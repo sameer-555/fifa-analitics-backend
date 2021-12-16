@@ -34,7 +34,7 @@ const getPlayers = async (req, res) => {
         players_details['total_count'] = await Player.count()
         players_details['offset'] = offset
         players_details['limit'] = limit
-        players_details['data'] = await Player.find().skip(offset).limit(limit)
+        players_details['data'] = await Player.find().sort({ 'player_id': -1 }).skip(offset).limit(limit)
         return res.status(200).send(players_details)
     } catch (err) {
         return res.status(400).send(err)
